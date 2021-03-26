@@ -1,0 +1,79 @@
+{% extends "Nights/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #006666;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+</style>
+    <div class="about-section">
+  <h1>About Nightseries</h1>
+  <p>Nightseries was founded for the people that love to find more information about movies: either if the movie has aired already or is coming up in the near future. The movies presented here will be update on a regular base so be sure that you will always find something interesting.</p>
+  <p>For a better experience please register. It will be free of charge and will bring the full experience.</p>
+</div>
+
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="{% static 'image/mircea.jpg' %}" alt="Mircea" style="width:100%">
+      <div class="container">
+        <h2>Tantau Mircea</h2>
+        <p class="title">CEO & Founder</p>
+        <p>I always try to be the best at what I'm doing!</p>
+        <p>mircea.tantau@yahoo.com</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

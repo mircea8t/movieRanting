@@ -1,0 +1,24 @@
+{% extends "Nights/base.html" %}
+{% block content %}
+      <div>
+          <p style="float: left;"><img  src="{{ object.image.url }}"></p>
+          <b style="color:rgb(51,102,153);">Title:</b>
+          <p>&nbsp &nbsp &nbsp{{ object.title }} <br /> </p>
+          <b style="color:rgb(51,102,153);">Plot:</b>
+            <p>&nbsp &nbsp &nbsp {{ object.description }}<br /> </p>
+          <b style="color:rgb(51,102,153);">Genre:</b>
+            <p>&nbsp &nbsp &nbsp{{ object.genre }}<br /> </p>
+          <b style="color:rgb(51,102,153);">Director:</b>
+            <p>&nbsp &nbsp &nbsp{{ object.director }}<br /> <br /></p>
+          <b style="color:rgb(51,102,153);">Writer:</b>
+            <p>&nbsp &nbsp &nbsp{{ object.writer }}<br /> </p>
+          <b style="color:rgb(51,102,153);">Actors:</b>
+            <p>&nbsp &nbsp &nbsp{{ object.actors }}<br /> </p>
+      </div>
+      {% if user.is_staff %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'movie-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'movie-delete' object.id %}">Delete</a>
+          </div>
+      {% endif %}
+{% endblock content %}

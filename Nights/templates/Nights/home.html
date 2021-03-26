@@ -1,0 +1,64 @@
+{% extends "Nights/base.html" %}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+</style>
+
+
+    <div class="container">
+    	<div class="jumbotron">
+	    	<form id="searchForm" action="{% url 'searchMovie'%}" method ="GET">
+	    		<input type="text" class="form-control" id="searchText" placeholder="Search Movies..." name="search">
+	    	</form>
+	    </div>
+    </div>
+
+    <div class="contain" style="display: flex; justify-content: space-between;">
+	{% for movie in movies %}
+			<div class="card">
+  				<img src="{{ movie.image.url }}" alt="Avatar" style="width:100%">
+				<div class="container">
+					<div class="well text-center">
+    					<h4><b><a class="article-title" href="{% url 'movie-detail' movie.id %}">{{ movie.title }}</a></b></h4>
+
+					</div>
+  				</div>
+			</div>
+    {% endfor %}
+    </div>
+	{% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+{% endblock content %}
